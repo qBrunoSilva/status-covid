@@ -17,7 +17,7 @@
     >
     <div v-if="status">
       <div class="d-flex flex-row">
-        <v-img class="icon" :src="icons.brazil" width="2%"/> 
+        <v-img class="icon" :src="icons.state" width="2%"/> 
         <h1 v-if="status.state" class="StatusTitle">
           {{status.state}} - {{status.uf}}
         </h1>
@@ -69,7 +69,7 @@ export default {
   data(){
     return {
       icons:{
-        brazil: require('../public/icons/brazil.svg'),
+        state: require('../public/icons/brazil.svg'),
         virus: require('../public/icons/virus.svg'),
         death: require('../public/icons/death.svg'),
         suspects: require('../public/icons/suspects.svg'),
@@ -98,6 +98,7 @@ export default {
     async getData(){
       // console.log(this.item)
       const baseURL = `https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/${this.item}`
+      this.icons.state = `https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/${this.item}.png`
       // console.log(baseURL)
       const response = await fetch(baseURL).then(res => res.json())
       // console.log(response)
@@ -128,8 +129,9 @@ export default {
     font-size: 24px;
   }
   .icon {
-    max-width: 45px;
+    max-width: 50px;
     margin: 3% 2% 4% 4%;
+    border: light;
   }
   .icon2 {
     max-width: 40px;
